@@ -1,18 +1,12 @@
-import { createContext } from "react";
-import { useRef } from "react";
-import { useContext,useState } from "react";
-import { v4 as uuidv4 } from 'uuid';
-const todocontext=createContext()
+import React from 'react';
+import { createContext,useState } from 'react';
+export  const todocontext=createContext();
 
-const TodoContextProvider=({children})=>{
-    const [todo,SetTodo]=useState([{name:"hello",status:false,key:uuidv4()}])
-    const name=useRef()
+export default function Todocontextprovider({children}) {
+    const [todos,setTodo]=useState([])
+    return (
+    <todocontext.Provider value={{todos,setTodo}}>
+    {children}
 
-return (
-<todocontext.Provider value={{todo,SetTodo,name}}>
-{children}
-</todocontext.Provider>
-)
-
+    </todocontext.Provider>)
 }
-export {TodoContextProvider,todocontext}
